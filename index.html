@@ -1,107 +1,186 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>BD Nono Evoli</title>
-<style>*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fff8e6;color:#222;overflow-x:hidden}
-#cover{position:fixed;inset:0;z-index:900;background:#1e90ff;display:flex;justify-content:center;align-items:center;overflow:hidden}
-#cover.hidden{display:none}.cloud{position:absolute;background:white;border-radius:999px}.c1{width:150px;height:44px;top:12%;left:8%}.c2{width:190px;height:52px;top:22%;right:6%}.c3{width:130px;height:38px;top:70%;left:10%}.c4{width:170px;height:46px;top:80%;right:10%}.c5{width:110px;height:34px;top:48%;left:42%}
-.jouer{background:#2ecc71;color:white;border:none;padding:22px 52px;border-radius:999px;font-size:30px;font-weight:900;box-shadow:0 8px 0 #1e8449;cursor:pointer;position:relative}
-.plusBtn{position:fixed;top:12px;right:12px;z-index:650;width:54px;height:54px;background:#2ecc71;color:white;border:3px solid white;border-radius:16px;font-size:34px;font-weight:900;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
-.soundBtn{position:fixed;top:12px;right:78px;z-index:650;width:54px;height:54px;background:white;color:#222;border:3px solid #222;border-radius:16px;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.backArrow{position:fixed;top:12px;left:12px;z-index:900;width:54px;height:54px;background:white;color:#222;border:3px solid #222;border-radius:16px;font-size:28px;font-weight:900;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.4)}.backArrow.show{display:flex}
-.wrap{max-width:720px;margin:auto;padding:10px;padding-bottom:80px}.slider{display:flex;transition:transform .35s ease}.slide{min-width:100%;padding:4px}.card{background:white;border-radius:20px;padding:16px;margin:8px 0}
-.btn{display:block;color:white;text-align:center;padding:16px;border-radius:16px;font-weight:900;text-decoration:none;margin:10px 0;font-size:18px}.btnYT{background:#ff0000}.btnWW{background:#ff8c00}
-.codeBox{font-size:26px;font-weight:900;text-align:center;background:#fff3b0;border:2px dashed #ff8c00;border-radius:12px;padding:10px}
-img.bd{width:100%;border-radius:14px;cursor:zoom-in;display:block}
-.dotsBar{position:fixed;bottom:0;left:0;right:0;z-index:400;background:rgba(0,0,0,.75);padding:12px;text-align:center}.dotsBar span{display:inline-block;width:14px;height:14px;border-radius:50%;background:white;margin:0 6px}.dotsBar span.on{background:#1e90ff;transform:scale(1.4)}
-#adminPage{display:none;position:fixed;inset:0;z-index:700;background:#000;overflow-y:auto;padding:70px 12px 20px}.adminTop{position:fixed;top:0;left:0;right:0;background:#000;color:white;text-align:center;padding:16px;font-size:22px;font-weight:900;z-index:701}
-.adminGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:720px;margin:auto}.adminBtn{background:white;color:#000;border:none;border-radius:18px;padding:22px 10px;font-size:18px;font-weight:900;cursor:pointer;min-height:110px}.adminBtn small{display:block;font-size:13px;font-weight:700;margin-top:6px}
-.subPage{display:none;position:fixed;inset:0;z-index:750;background:white;overflow-y:auto;padding:70px 14px 100px}.subPage.open{display:block}
-.selectSquare{position:absolute;top:10px;right:10px;width:32px;height:32px;border:3px solid #1e90ff;border-radius:8px;background:white;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:white;cursor:pointer}.selectSquare.sel{background:#1e90ff}
-.bdPick{position:relative;background:white;border-radius:16px;padding:10px;margin:10px 0;border:2px solid #ddd}.bdPick img{width:100%;border-radius:10px}
-.toolbar{position:fixed;bottom:0;left:0;right:0;background:#222;padding:10px;display:none;gap:8px;justify-content:flex-start;z-index:760;overflow-x:auto;white-space:nowrap}.toolbar button{background:white;border:none;border-radius:10px;padding:12px 14px;font-size:18px;font-weight:900;cursor:pointer;flex-shrink:0}
-#editArea{border:2px solid #222;border-radius:14px;padding:14px;min-height:180px;background:white}
-textarea,input,select{width:100%;padding:12px;border-radius:12px;border:2px solid #ddd;margin:6px 0;font-size:15px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:800;overflow-y:auto;padding:14px}.modal.open{display:block}.box{background:white;border-radius:20px;padding:16px;max-width:680px;margin:auto}.closeBtn{background:#ff4757;color:white;border:none;padding:12px;border-radius:999px;font-weight:bold;width:100%}
-#zoomOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:850;justify-content:center;align-items:center;flex-direction:column}#zoomOverlay.open{display:flex}#zoomOverlay img{width:96%;max-height:85vh;object-fit:contain}
-#savedBanner{display:none;position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:999;background:#2ecc71;color:white;padding:14px 22px;border-radius:999px;font-weight:900;font-size:18px;box-shadow:0 4px 16px rgba(0,0,0,.4);text-align:center}
-</style></head><body>
-<div id="cover"><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="cloud c4"></div><div class="cloud c5"></div><button class="jouer" onclick="startApp()">JOUER</button></div>
-<button class="plusBtn" onclick="openAdminCode()">+</button>
-<button class="soundBtn" id="soundBtn" onclick="toggleSound()">🔊</button>
-<button class="backArrow" id="backArrow" onclick="goBack()">←</button>
-<div class="wrap"><div style="overflow:hidden;border-radius:22px"><div class="slider" id="slider">
-<div class="slide"><div style="background:#ff0000;border-radius:22px;padding:8px"><div class="card"><h2>BD ABONNEMENT</h2><img class="bd" onclick="openZoom(this.src)" src="1794084746299.jpg" onerror="this.style.display='none';document.getElementById('noImg1').style.display='block'"><div id="noImg1" style="display:none;background:#ffe4e4;border-radius:14px;padding:14px;text-align:center">⚠️ Pas d'image.<br>Remets le fichier <b>1794084746299.jpg</b> dans GitHub, dans le même dossier que index.html.</div><p>Bonjour ! Alors sur ma chaîne, vous pouvez publier des posts et voir mes vidéos et mes shorts. S'il vous plaît, soutenez-moi : abonnez-vous, publiez des posts et des commentaires.</p><a class="btn btnYT" href="https://youtube.com/@Nono_Evoli">Chaine Nono Evoli</a><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900" onclick="openExpli('yt')">Explications</button></div></div></div>
-<div class="slide"><div style="background:#ff8c00;border-radius:22px;padding:8px"><div class="card"><h2>BD PARRAINAGE</h2><p>Marche et gagne des récompenses !</p><div class="codeBox">FideleCygne3378</div><p style="text-align:center"><button style="padding:12px;border-radius:12px;background:#222;color:white;font-weight:bold" onclick="copyParrain(this)">Copier le code</button></p><img class="bd" onclick="openZoom(this.src)" src="1794081538222.jpg" onerror="this.style.display='none';document.getElementById('noImg2').style.display='block'"><div id="noImg2" style="display:none;background:#ffe4e4;border-radius:14px;padding:14px;text-align:center">⚠️ Pas d'image.<br>Remets le fichier <b>1794081538222.jpg</b> dans GitHub.</div><img class="bd" style="margin-top:10px" onclick="openZoom(this.src)" src="file_00000000a5e081f49e3fe92562009909.png" onerror="this.style.display='none'"><a class="btn btnWW" href="https://wewardapp.go.link/8ifvH?adj_label=FideleCygne3378">Appli Marche</a><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900" onclick="openExpli('ww')">Explications</button></div></div></div>
-</div></div><p style="text-align:center;color:#666">Fais glisser avec ton doigt pour changer de page. Pas besoin de bouton.</p></div>
-<div class="dotsBar" id="dotsBar"></div>
-<div id="adminPage"><div class="adminTop">ADMIN</div><div class="adminGrid">
-<button class="adminBtn" onclick="openSub('filePage')">Insérer un fichier<small>Python, Java, HTML...</small></button>
-<button class="adminBtn" onclick="openSub('colorPage')">Choisir couleur BD<small>Choisir la BD</small></button>
-<button class="adminBtn" onclick="openSub('textPage')">Modifier texte BD<small>Gras, taille, style</small></button>
-<button class="adminBtn" onclick="openSub('codePage')">Modifier texte code<small>Coller + fin auto</small></button>
-<button class="adminBtn" onclick="openSub('addPage')">Ajouter BD<small>Avec code</small></button>
-<button class="adminBtn" onclick="toggleBlock()">Bloquer<small>Verrouille tout</small></button>
-<button class="adminBtn" style="background:#fff3b0;border:3px solid #ff8c00" onclick="openSub('keyPage')">Mettre la clé<small>Où mettre le code ? ICI</small></button>
-<button class="adminBtn" style="background:#7c3aed;color:white" onclick="openSub('iaPage')">IA<small>Dans ADMIN seulement</small></button>
-</div><p style="color:white;text-align:center">Glisse de bas en haut pour voir les boutons cachés si écran petit.</p><button style="width:100%;padding:14px;border-radius:14px;background:white;color:black;font-weight:900;margin-top:12px" onclick="goBack()">← Retour au site</button></div>
-<div id="filePage" class="subPage"><h2>Insérer un fichier</h2><input type="file" id="fileInput" onchange="showFile(this)"><div id="fileList"></div><button style="width:100%;padding:14px;border-radius:14px;background:#2ecc71;color:white;font-weight:900" onclick="downloadInApp()">Télécharger le fichier dans l'application</button><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900;margin-top:10px" onclick="closeSub('filePage')">← Retour ADMIN</button></div>
-<div id="colorPage" class="subPage"><h2>Choisir couleur BD</h2><p>Clique sur le carré bleu en haut à droite d'une BD pour la choisir. Il devient bleu avec une croix blanche dedans.</p><div id="colorList"></div><div><p>Couleur choisie :</p><div style="display:flex;gap:8px"><button style="flex:1;padding:16px;border-radius:12px;background:#ff0000;color:white;font-weight:900" onclick="applyColor('#ff0000')">Rouge</button><button style="flex:1;padding:16px;border-radius:12px;background:#ff8c00;color:white;font-weight:900" onclick="applyColor('#ff8c00')">Orange</button><button style="flex:1;padding:16px;border-radius:12px;background:#2ecc71;color:white;font-weight:900" onclick="applyColor('#2ecc71')">Vert</button><button style="flex:1;padding:16px;border-radius:12px;background:#9b59b6;color:white;font-weight:900" onclick="applyColor('#9b59b6')">Violet</button></div></div><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900;margin-top:12px" onclick="closeSub('colorPage')">← Retour ADMIN</button></div>
-<div id="textPage" class="subPage"><h2>Modifier texte BD</h2><p style="background:#fff3b0;border-radius:12px;padding:10px"><b>Important :</b> Les commandes seules changent le texte que sur ton téléphone. Pour tous les appareils, appuie sur <b>Publier pour tous</b> en bas de la barre d'outils.</p><div id="editArea" contenteditable="true"><b>BD Nono Evoli</b><br>Tu peux modifier ce texte comme un PDF.<br><br>Teste ici : sélectionne ce texte et appuie sur B, I, U, couleur, taille, liste, centré.</div><button style="width:100%;padding:16px;border-radius:14px;background:#1e90ff;color:white;font-weight:900;font-size:18px;margin-top:12px" onclick="publishForAll()">Publier pour tous les appareils</button><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900;margin-top:10px" onclick="closeSub('textPage')">← Retour ADMIN</button></div>
-<div class="toolbar" id="toolbar"><button onclick="doCmd('bold')">B</button><button onclick="doCmd('italic')">I</button><button onclick="doCmd('underline')">U</button><button onclick="doCmd('strikeThrough')">S</button><button onclick="changeSize(1)">A+</button><button onclick="changeSize(-1)">A-</button><button onclick="changeFont()">Aa</button><button onclick="doCmd('justifyLeft')">←</button><button onclick="doCmd('justifyCenter')">↔</button><button onclick="doCmd('justifyRight')">→</button><button onclick="doCmd('insertUnorderedList')">• Liste</button><button onclick="doCmd('insertOrderedList')">1. Liste</button><button onclick="doCmd('undo')">↩</button><button onclick="doCmd('redo')">↪</button><button onclick="doCmd('removeFormat')">Effacer style</button><input type="color" id="txtColor" onchange="setTxtColor(this.value)" style="width:44px;height:44px"><input type="color" id="txtBg" onchange="setTxtBg(this.value)" value="#ffff00" style="width:44px;height:44px"><button onclick="saveTextBD()" style="background:#2ecc71;color:white">Enregistrer</button><button onclick="publishForAll()" style="background:#1e90ff;color:white">Publier pour tous</button></div>
-<div id="codePage" class="subPage"><h2>Modifier texte code</h2><p>Colle ton texte ici. Il se met avant la fin. La fin reste cachée.</p><textarea id="codeArea" rows="8" placeholder="Colle ton texte ici..."></textarea><p id="codePreview" style="color:#666;font-size:13px"></p><button style="width:100%;padding:14px;border-radius:14px;background:#2ecc71;color:white;font-weight:900" onclick="saveCode()">Enregistrer</button><hr><h3>Ajouter un fichier</h3><input type="file" id="codeFileInput" onchange="loadCodeFile(this)"><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900" onclick="downloadCodeFile()">Télécharger le fichier dans l'application</button><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900;margin-top:10px" onclick="closeSub('codePage')">← Retour ADMIN</button></div>
-<div id="addPage" class="subPage"><h2>Ajouter BD</h2><input id="bdTitle" placeholder="Titre BD"><input id="bdUrl" placeholder="Lien image https://..."><input id="bdFile2" type="file" accept="image/*"><textarea id="bdText" placeholder="Texte BD"></textarea><button style="width:100%;padding:14px;border-radius:14px;background:#2ecc71;color:white;font-weight:900" onclick="saveBD2()">Ajouter</button><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900;margin-top:10px" onclick="closeSub('addPage')">← Retour ADMIN</button></div>
-<div id="keyPage" class="subPage"><h2>Où mettre la clé ? ICI</h2><div style="background:#fff3b0;border:2px solid #ff8c00;border-radius:14px;padding:14px"><p><b>La clé, c'est le long code qui commence par ghp_.</b></p><p style="font-size:18px;font-weight:900;text-align:center;background:white;border-radius:10px;padding:10px">👇 COLLE TA CLÉ ICI 👇</p><input id="ghToken" type="password" placeholder="Colle ta clé ghp_ ici" style="border:3px solid #1e90ff;font-size:18px"><input id="ghRepo" value="nonoevoli-svg/Nono_Evoli-"><button style="width:100%;padding:14px;border-radius:14px;background:#1e90ff;color:white;font-weight:900" onclick="saveGhToken()">Enregistrer ma clé</button><p id="ghMsg" style="text-align:center;font-weight:bold"></p><button style="width:100%;padding:16px;border-radius:14px;background:#2ecc71;color:white;font-weight:900;font-size:18px;margin-top:10px" onclick="publishFromSite();return false;">Publier depuis le site pour tous les appareils</button><p style="text-align:center;font-size:13px">Si GitHub refuse, le fichier sera téléchargé, tu le mets sur GitHub à la place de index.html.</p></div><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900;margin-top:12px" onclick="closeSub('keyPage')">← Retour ADMIN</button></div>
-<div id="iaPage" class="subPage"><h2>IA - Dans ADMIN seulement</h2><p>Elle est que ici, pas sur la page des BD.</p><div style="background:white;border:2px solid #7c3aed;border-radius:16px;overflow:hidden"><div style="background:#7c3aed;color:white;padding:12px;font-weight:900">IA BD Nono Evoli</div><div id="iaChat" style="padding:12px;height:220px;overflow-y:auto"><p><b>IA :</b> Salut ! Demande-moi : abonnement, parrainage, code, comment gagner. Tu peux aussi m'apprendre : écris Apprends que ...</p></div><div style="display:flex;gap:8px;padding:10px"><input id="iaInput" placeholder="Écris ta question..."><button onclick="askIA()" style="background:#7c3aed;color:white;border:none;padding:12px 18px;border-radius:12px;font-weight:900">Envoyer</button></div><div style="padding:10px;background:#f3f0ff"><b>Apprendre à l'IA :</b><input id="iaNewQ" placeholder="Question : c'est quoi ton jeu préféré ?"><input id="iaNewA" placeholder="Réponse : Mon jeu préféré c'est Minecraft"><button onclick="addDataIA()" style="width:100%;padding:10px;border-radius:12px;background:#7c3aed;color:white;font-weight:900">Ajouter cette donnée à l'IA</button><p id="iaAddMsg" style="font-size:12px;color:#16a34a;font-weight:bold"></p></div><div style="display:flex;gap:6px;flex-wrap:wrap;padding:10px"><button onclick="quickIA('abonnement')">Abonnement ?</button><button onclick="quickIA('parrainage')">Parrainage ?</button><button onclick="quickIA('code')">Code ?</button><button onclick="quickIA('comment gagner')">Comment gagner ?</button><button onclick="quickIA('tu te souviens de moi ?')">Tu te souviens ?</button><button onclick="quickIA('oublie tout')">Oublier</button></div></div><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900;margin-top:12px" onclick="closeSub('iaPage')">← Retour ADMIN</button></div>
-<div id="codeModal" class="modal"><div class="box"><h2>Code ADMIN</h2><p>Tape ton code secret :</p><input id="codeInput" type="password" placeholder="Code..."><p id="codeMsg" style="color:red"></p><button style="width:100%;padding:14px;border-radius:14px;background:#222;color:white;font-weight:900" onclick="checkCode()">Débloquer</button><button style="width:100%;padding:12px;border-radius:999px;background:#ff4757;color:white;margin-top:10px" onclick="closeModal('codeModal')">Fermer</button></div></div>
-<div id="expliModal" class="modal"><div class="box" id="expliContent"></div><div style="max-width:680px;margin:10px auto"><button style="width:100%;padding:12px;border-radius:999px;background:#ff4757;color:white" onclick="closeModal('expliModal')">Fermer</button></div></div>
-<div id="zoomOverlay" onclick="closeZoom()"><img id="zoomImg" src=""><button style="background:#ff4757;color:white;border:none;padding:10px 18px;border-radius:999px">Fermer</button></div>
-<div id="savedBanner">✅ Enregistré !</div>
-<script>
-var SECRET_NORM="mon1dessertprefereestletiramisu";var SUFFIX="\n<!-- FIN - NE PAS EFFACER -->";var blocked=false;var cur=0;var stack=[];var selectedBD=null;var fontIdx=0;var fonts=['Arial','Verdana','Georgia','Courier New','Comic Sans MS'];var soundOn=true;
-function normCode(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');}
-function showSaved(msg){var b=document.getElementById('savedBanner');if(!b)return;b.textContent='✅ '+(msg||'Enregistré !');b.style.display='block';clearTimeout(window._savedTimer);window._savedTimer=setTimeout(function(){b.style.display='none';},4000);}
-function playSound(kind){if(!soundOn)return;try{var ctx=new (window.AudioContext||window.webkitAudioContext)();var o=ctx.createOscillator();var g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=(kind=='jouer'?660:(kind=='good'?880:440));o.type='sine';g.gain.value=0.15;o.start();o.stop(ctx.currentTime+0.15);}catch(e){}}
-function toggleSound(){soundOn=!soundOn;var b=document.getElementById('soundBtn');if(b)b.textContent=soundOn?'🔊':'🔇';if(soundOn)playSound('click');}
-function speakIA(text){if(!soundOn)return;try{if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(text);u.lang='fr-FR';window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}}catch(e){}}
-function startApp(){playSound('jouer');document.getElementById('cover').classList.add('hidden');stack=[];showBack();update();}
-function showBack(){document.getElementById('backArrow').classList.add('show');}
-function goBack(){if(stack.length){var last=stack.pop();var el=document.getElementById(last);if(el){el.classList.remove('open');if(last=='adminPage')el.style.display='none';}document.getElementById('toolbar').style.display='none';if(stack.length==0){var ap=document.getElementById('adminPage');if(ap&&ap.style.display=='block'){showBack();}else if(document.getElementById('cover').classList.contains('hidden')){showBack();}else{document.getElementById('backArrow').classList.remove('show');}}else{showBack();}return;}document.getElementById('cover').classList.remove('hidden');document.getElementById('backArrow').classList.remove('show');}
-function closeSub(id){var el=document.getElementById(id);if(el)el.classList.remove('open');var i=stack.indexOf(id);if(i>-1)stack.splice(i,1);document.getElementById('toolbar').style.display='none';showBack();}
-function openAdminCode(){if(blocked){showSaved('Bloqué !');alert('Bloqué');return;}var ci=document.getElementById('codeInput');if(ci)ci.value='';var cm=document.getElementById('codeModal');if(cm)cm.classList.add('open');var msg=document.getElementById('codeMsg');if(msg)msg.textContent='';playSound('click');}
-function checkCode(){var v=document.getElementById('codeInput').value||'';var n=normCode(v);var msg=document.getElementById('codeMsg');if(msg)msg.textContent='';if(n===SECRET_NORM){document.getElementById('codeModal').classList.remove('open');var ap=document.getElementById('adminPage');ap.style.display='block';ap.classList.add('open');stack=[];stack.push('adminPage');showBack();playSound('good');showSaved('Code bon ! Bienvenue dans ADMIN.');}else{if(msg)msg.textContent='Code faux ! Essaie encore.';}}
-function openSub(id){var el=document.getElementById(id);if(!el)return;el.classList.add('open');if(stack.indexOf(id)==-1)stack.push(id);showBack();if(id=='textPage')document.getElementById('toolbar').style.display='flex';else document.getElementById('toolbar').style.display='none';if(id=='colorPage')renderColorList();if(id=='iaPage')loadMemory();playSound('click');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-function toggleBlock(){blocked=!blocked;showSaved(blocked?'Bloqué !':'Débloqué !');alert(blocked?'Bloqué':'Débloqué');}
-function totalSlides(){return document.querySelectorAll('#slider .slide').length;}function update(){document.getElementById('slider').style.transform='translateX(-'+(cur*100)+'%)';var d=document.getElementById('dotsBar');d.innerHTML='';for(var i=0;i<totalSlides();i++){var s=document.createElement('span');if(i===cur)s.className='on';d.appendChild(s);}}
-function nextSlide(){cur=(cur+1)%totalSlides();update();playSound('click');}function prevSlide(){cur=(cur+totalSlides()-1)%totalSlides();update();}
-var sx=0;var sl=document.getElementById('slider');sl.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});sl.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(dx<-50)nextSlide();if(dx>50)prevSlide()},{passive:true});
-function openExpli(t){document.getElementById('expliContent').innerHTML=t=='yt'?'<h2>ABONNEMENT</h2><p>Abonne-toi à la chaîne pour voir les vidéos et les shorts.</p>':'<h2>PARRAINAGE</h2><p>Marche, gagne des Wards, valide avant minuit, 3 jours pour le bonus.</p>';document.getElementById('expliModal').classList.add('open');}
-function openZoom(s){document.getElementById('zoomImg').src=s;document.getElementById('zoomOverlay').classList.add('open');}function closeZoom(){document.getElementById('zoomOverlay').classList.remove('open');}
-function copyParrain(btn){try{navigator.clipboard.writeText('FideleCygne3378');}catch(e){}if(btn)btn.textContent='✅ Copié !';showSaved('Code copié !');}
-function showFile(inp){var f=inp.files[0];if(!f)return;document.getElementById('fileList').innerHTML='<div style="padding:14px;background:#fff;border:2px solid #222;border-radius:14px;font-weight:900">'+f.name+'</div>';window._currentFile=f;showSaved('Fichier choisi !');}
-function downloadInApp(){if(!window._currentFile){alert('Choisis un fichier d abord');return;}showSaved('Fichier téléchargé !');alert('Fichier téléchargé dans l application');}
-function renderColorList(){var c=document.getElementById('colorList');c.innerHTML='';var bds=[{t:'BD ABONNEMENT',img:'1794084746299.jpg'},{t:'BD PARRAINAGE 1',img:'1794081538222.jpg'},{t:'BD PARRAINAGE 2',img:'file_00000000a5e081f49e3fe92562009909.png'}];bds.forEach(function(b,i){var d=document.createElement('div');d.className='bdPick';d.innerHTML='<div class="selectSquare" id="sq'+i+'" onclick="selectBD('+i+',this)"> </div><b>'+b.t+'</b><br><img src="'+b.img+'" onerror="this.style.display=\'none\'">';c.appendChild(d);});}
-function selectBD(i,el){document.querySelectorAll('.selectSquare').forEach(function(s){s.classList.remove('sel');s.textContent='';});el.classList.add('sel');el.textContent='x';selectedBD=i;playSound('click');}
-function applyColor(col){if(selectedBD===null){alert('Choisis une BD d abord avec le carré bleu');return;}var picks=document.querySelectorAll('.bdPick');if(picks[selectedBD])picks[selectedBD].style.background=col;showSaved('Couleur appliquée !');}
-function doCmd(cmd){var a=document.getElementById('editArea');if(a)a.focus();document.execCommand(cmd,false,null);}
-function setTxtColor(c){var a=document.getElementById('editArea');if(a)a.focus();document.execCommand('foreColor',false,c);}
-function setTxtBg(c){var a=document.getElementById('editArea');if(a)a.focus();document.execCommand('hiliteColor',false,c);}
-function changeSize(d){var a=document.getElementById('editArea');var s=parseInt(window.getComputedStyle(a).fontSize)||16;a.style.fontSize=(s+d*2)+'px';}
-function changeFont(){fontIdx=(fontIdx+1)%fonts.length;document.getElementById('editArea').style.fontFamily=fonts[fontIdx];}
-function saveTextBD(){var a=document.getElementById('editArea');var h=a?a.innerHTML:'';try{localStorage.setItem('texteBD',h);}catch(e){}showSaved('Texte enregistré !');}
-function saveCode(){var v=document.getElementById('codeArea').value;window._finalCode=v+SUFFIX;var p=document.getElementById('codePreview');if(p)p.textContent='✅ Enregistré ! Fin cachée ajoutée.';showSaved('Code enregistré !');}
-function loadCodeFile(inp){var f=inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){var txt=e.target.result;if(txt.endsWith(SUFFIX))txt=txt.slice(0,-SUFFIX.length);document.getElementById('codeArea').value=txt;showSaved('Fichier chargé !');};r.readAsText(f);}
-function downloadCodeFile(){var v=document.getElementById('codeArea').value||'';var blob=new Blob([v+SUFFIX],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ma-bd.html';a.click();showSaved('Fichier téléchargé !');}
-function saveBD2(){var t2=document.getElementById('bdTitle').value||'Nouvelle BD';var url=document.getElementById('bdUrl').value;var txt=document.getElementById('bdText').value||'';var f=document.getElementById('bdFile2').files[0];function add(img){var div=document.createElement('div');div.className='slide';div.innerHTML='<div class="card"><h2>'+t2+'</h2><p>'+txt+'</p>'+(img?'<img class="bd" onclick="openZoom(this.src)" src="'+img+'">':'')+'</div>';document.getElementById('slider').appendChild(div);cur=totalSlides()-1;update();showSaved('BD ajoutée et enregistrée !');}if(f){var r=new FileReader();r.onload=function(e){add(e.target.result)};r.readAsDataURL(f);}else add(url);}
-function saveGhToken(){var tokEl=document.getElementById('ghToken');var repoEl=document.getElementById('ghRepo');var tok=tokEl?tokEl.value.trim():'';var repo=repoEl?repoEl.value.trim():'';var msg=document.getElementById('ghMsg');if(!tok){if(msg)msg.textContent='❌ Colle d abord ta clé ghp_';showSaved('Colle d abord ta clé !');return;}try{localStorage.setItem('ghToken',tok);localStorage.setItem('ghRepo',repo);}catch(e){}if(msg)msg.textContent='✅ Clé enregistrée ! Elle est bien enregistrée sur ce téléphone.';showSaved('Clé enregistrée !');}
-function b64EncodeUnicode(str){return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,function(m,p){return String.fromCharCode('0x'+p);}));}
-function publishForAll(){var full='<!DOCTYPE html>'+document.documentElement.outerHTML;var blob=new Blob([full],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';a.click();showSaved('Fichier téléchargé ! Mets-le sur GitHub.');}
-function publishFromSite(){var msg=document.getElementById('ghMsg');var tokInput=document.getElementById('ghToken');var repoInput=document.getElementById('ghRepo');var tok=tokInput&&tokInput.value.trim()?tokInput.value.trim():'';var repo=repoInput&&repoInput.value.trim()?repoInput.value.trim():'nonoevoli-svg/Nono_Evoli-';if(!tok){try{tok=localStorage.getItem('ghToken')||'';}catch(e){}}if(!tok){if(msg)msg.textContent='❌ Mets d abord ta clé, puis Enregistrer ma clé.';showSaved('Mets d abord ta clé !');alert('Mets d abord ta clé, puis Enregistrer ma clé');return;}try{localStorage.setItem('ghToken',tok);localStorage.setItem('ghRepo',repo);}catch(e){}if(msg)msg.textContent='⏳ Envoi en cours... Ne ferme pas.';showSaved('Envoi en cours...');var full='<!DOCTYPE html>'+document.documentElement.outerHTML;fetch('https://api.github.com/repos/'+repo+'/contents/index.html',{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'}}).then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});}).then(function(res){if(!res.ok||!res.j.sha){throw new Error(res.j.message||'Fichier introuvable : '+repo);}return fetch('https://api.github.com/repos/'+repo+'/contents/index.html',{method:'PUT',headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:'Mise à jour depuis le site',content:b64EncodeUnicode(full),sha:res.j.sha})});}).then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});}).then(function(res){if(res.ok&&(res.j.content||res.j.commit)){if(msg)msg.textContent='✅ Réussi ! Attends 1 minute.';showSaved('Publié ! Attends 1 minute.');}else{throw new Error(res.j.message||'GitHub a refusé');}}).catch(function(e){if(msg)msg.textContent='⚠️ Publier auto a échoué : '+e.message+' → Fichier téléchargé, mets-le sur GitHub.';showSaved('Publier auto a échoué, fichier téléchargé !');var blob=new Blob([full],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';a.click();alert('⚠️ Publier auto a échoué : '+e.message+'\n\nLe fichier index.html vient d être téléchargé. Mets-le sur GitHub à la place de index.html.');});}
-function getMemory(){try{return JSON.parse(localStorage.getItem('iaMemory')||'{"hist":[],"name":"","lastTopic":"","facts":[]}');}catch(e){return {hist:[],name:"",lastTopic:"",facts:[]};}
-function saveMemory(m){try{localStorage.setItem('iaMemory',JSON.stringify(m));}catch(e){}}
-function loadMemory(){var m=getMemory();var chat=document.getElementById('iaChat');if(!chat)return;if(m.hist&&m.hist.length){chat.innerHTML='';m.hist.slice(-20).forEach(function(h){chat.innerHTML+='<p><b>'+h.who+' :</b> '+h.text+'</p>';});}if(m.name){chat.innerHTML+='<p><b>IA :</b> Re-salut '+m.name+' ! Je me souviens de toi.</p>';}chat.scrollTop=chat.scrollHeight;}
-function quickIA(q){var i=document.getElementById('iaInput');if(i)i.value=q;askIA();}
-function addDataIA(){var q=document.getElementById('iaNewQ').value.trim();var a=document.getElementById('iaNewA').value.trim();if(!q||!a){alert('Écris une question et une réponse');return;}var mem=getMemory();if(!mem.facts)mem.facts=[];mem.facts.push({q:q.toLowerCase(),a:a,origQ:q});saveMemory(mem);document.getElementById('iaAddMsg').textContent='✅ Donnée enregistrée ! L\\'IA a compris : '+q;showSaved('Donnée enregistrée dans l\\'IA !');var chat=document.getElementById('iaChat');chat.innerHTML+='<p><b>IA :</b> Merci, j\\'ai appris : '+q+' → '+a+'</p>';}
-function findFactIA(q,mem){if(!mem.facts||!mem.facts.length)return null;var best=null;var bestScore=0;var words=q.toLowerCase().split(/[^a-zà-ÿ0-9]+/).filter(function(w){return w.length>2});mem.facts.forEach(function(f){var score=0;words.forEach(function(w){if(f.q.includes(w))score++;});if(f.q==q)score+=10;if(score>bestScore){bestScore=score;best=f;}});if(bestScore>=1)return best;return null;}
-function askIA(){var inp=document.getElementById('iaInput');var orig=inp.value||'';var q=orig.toLowerCase().trim();if(!q)return;var chat=document.getElementById('iaChat');var mem=getMemory();chat.innerHTML+='<p><b>Toi :</b> '+orig+'</p>';mem.hist.push({who:'Toi',text:orig});if(q.startsWith('apprends')||q.startsWith('retiens')){var txt=orig.replace(/^(apprends que|retiens que|apprends|retiens)/i,'').trim();if(!mem.facts)mem.facts=[];mem.facts.push({q:txt.toLowerCase(),a:txt,origQ:txt});saveMemory(mem);var rep0='Ok, j\\'ai appris et j\\'ai compris : '+txt;chat.innerHTML+='<p><b>IA :</b> '+rep0+'</p>';speakIA(rep0);mem.hist.push({who:'IA',text:rep0});saveMemory(mem);inp.value='';chat.scrollTop=chat.scrollHeight;return;}var rep='';if(orig.toLowerCase().includes("je m'appelle")){var parts=orig.split(' ');var nm=parts[parts.length-1].replace(/[^A-Za-zÀ-ÿ-]/g,'');if(nm.length>1){mem.name=nm;rep='Enchanté '+nm+' ! Je vais me souvenir de toi.';}}else if(q.includes('tu te souviens')||q.includes('memoire')||q.includes('mémoire')){var s='Oui, je me souviens. ';if(mem.name)s+='Tu t\\'appelles '+mem.name+'. ';if(mem.lastTopic)s+='La dernière fois on a parlé de '+mem.lastTopic+'. ';if(mem.facts&&mem.facts.length)s+='Tu m\\'as appris '+mem.facts.length+' donnée(s). ';rep=s;}else if(q.includes('oublie')){localStorage.removeItem('iaMemory');chat.innerHTML='<p><b>IA :</b> Ok, j\\'ai tout oublié.</p>';inp.value='';showSaved('Mémoire effacée !');return;}else if(q.includes('abonn')){mem.lastTopic='abonnement';rep='Abonnement : tu t\\'abonnes à la chaîne pour voir les vidéos et les shorts. Fais glisser pour voir la BD Abonnement.';}else if(q.includes('parrain')||q.includes('code')){mem.lastTopic='parrainage';rep='Parrainage : tu t\\'inscris avec mon code FideleCygne3378. Toi +50, moi +20 après 3 jours.';}else if(q.includes('gagn')||q.includes('ward')){mem.lastTopic='comment gagner';rep='Pour gagner : tu marches, tu gagnes des Wards, tu valides avant minuit, 3 jours pour le bonus.';}else{var fact=findFactIA(q,mem);if(fact){rep=fact.a+' (Je me souviens, tu me l\\'as appris.)';}else{rep='Je suis la petite IA de la BD. Demande-moi : abonnement, parrainage, code, comment gagner. Ou apprends-moi avec : Apprends que ...';}}chat.innerHTML+='<p><b>IA :</b> '+rep+'</p>';speakIA(rep);mem.hist.push({who:'IA',text:rep});if(mem.hist.length>40)mem.hist=mem.hist.slice(-40);saveMemory(mem);inp.value='';chat.scrollTop=chat.scrollHeight;}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal,.subPage').forEach(function(m){m.classList.remove('open')});var ap=document.getElementById('adminPage');if(ap)ap.style.display='none';document.getElementById('backArrow').classList.remove('show');document.getElementById('toolbar').style.display='none';}});
-window.onload=function(){update();try{var tt=localStorage.getItem('ghToken');if(tt){var g=document.getElementById('ghToken');if(g)g.value=tt;var gm=document.getElementById('ghMsg');if(gm)gm.textContent='Clé déjà enregistrée sur ce téléphone.';}var rr=localStorage.getItem('ghRepo');if(rr){var gr=document.getElementById('ghRepo');if(gr)gr.value=rr;}var saved=localStorage.getItem('texteBD');if(saved){var ea=document.getElementById('editArea');if(ea)ea.innerHTML=saved;}}catch(e){}};
-</script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>BD Nono Evoli</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8e6;
+      color: #222;
+      overflow-x: hidden;
+    }
+    #cover {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: #1e90ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    #cover.hidden { display: none; }
+    .cloud {
+      position: absolute;
+      background: white;
+      border-radius: 999px;
+      opacity: 0.9;
+    }
+    .c1 { width:150px; height:44px; top:12%; left:8%; }
+    .c2 { width:190px; height:52px; top:22%; right:6%; }
+    .c3 { width:130px; height:38px; top:70%; left:10%; }
+    .c4 { width:170px; height:46px; top:80%; right:10%; }
+    .c5 { width:110px; height:34px; top:48%; left:42%; }
+    .jouer {
+      background:#2ecc71;
+      color:white;
+      border:none;
+      padding:22px 52px;
+      border-radius:999px;
+      font-size:30px;
+      font-weight:900;
+      box-shadow:0 8px 0 #1e8449;
+      cursor:pointer;
+      position:relative;
+    }
+    .soundBtn,
+    .backArrow {
+      position: fixed;
+      top: 12px;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      font-size: 26px;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 650;
+    }
+    .soundBtn {
+      right: 78px;
+      background: white;
+      color: #222;
+      border: 3px solid #222;
+    }
+    .backArrow {
+      left: 12px;
+      background: white;
+      color: #222;
+      border: 3px solid #222;
+      display: none;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: auto;
+      padding: 18px 10px 80px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 18px;
+      margin: 10px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,.08);
+    }
+    .slide {
+      min-width: 100%;
+      padding: 4px;
+    }
+    .slider {
+      display: flex;
+      transition: transform .35s ease;
+    }
+    img.bd {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="cover">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="cloud c4"></div>
+    <div class="cloud c5"></div>
+    <button class="jouer" type="button">JOUER</button>
+  </div>
+
+  <button class="soundBtn" id="soundBtn" type="button">🔊</button>
+  <button class="backArrow" id="backArrow" type="button">←</button>
+
+  <div class="wrap">
+    <div class="slider" id="slider">
+      <div class="slide">
+        <div class="card">
+          <h2>BD ABONNEMENT</h2>
+          <img class="bd" src="1794084746299.jpg" alt="BD Abonnement">
+        </div>
+      </div>
+      <div class="slide">
+        <div class="card">
+          <h2>BD PARRAINAGE</h2>
+          <p>Marche et gagne des récompenses !</p>
+          <div class="codeBox" style="font-size:26px;font-weight:900;text-align:center;background:#fff3b0;border:2px dashed #ff8c00;border-radius:12px;padding:10px;">
+            FideleCygne3378
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var soundOn = true;
+
+    function playSound(kind) {
+      if (!soundOn) return;
+      try {
+        var ctx = new (window.AudioContext || window.webkitAudioContext)();
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        gain.gain.value = 0.12;
+        osc.frequency.value = (kind === 'jouer') ? 660 : 440;
+        osc.start();
+        osc.stop(ctx.currentTime + 0.15);
+      } catch (e) {}
+    }
+
+    function startApp() {
+      try {
+        var cover = document.getElementById('cover');
+        if (cover) cover.classList.add('hidden');
+        playSound('jouer');
+        var back = document.getElementById('backArrow');
+        if (back) back.style.display = 'flex';
+      } catch (e) {
+        console.error('startApp error:', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.querySelector('.jouer');
+      if (btn) {
+        btn.addEventListener('click', startApp);
+      }
+
+      var soundBtn = document.getElementById('soundBtn');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', function () {
+          soundOn = !soundOn;
+          soundBtn.textContent = soundOn ? '🔊' : '🔇';
+          if (soundOn) playSound('click');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
